@@ -84,7 +84,8 @@
     [self registerForDraggedTypes: pbTypes];    
 
     if (style == DockStyleModern)
-      [self setBackColor: [[NSColor grayColor] colorWithAlphaComponent: 0.33]];
+      //[self setBackColor: [[NSColor grayColor] colorWithAlphaComponent: 0.33]]; Former Dock color in the code
+      [self setBackColor: [[NSColor whiteColor] colorWithAlphaComponent: 0.1]]; // New white color. B. Dekoninck
     else
       [self setBackColor: [NSColor grayColor]];
       
