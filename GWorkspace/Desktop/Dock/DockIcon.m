@@ -264,8 +264,11 @@
 }
 
 - (void)mouseUp:(NSEvent *)theEvent
+ 
 {
-  if ([theEvent clickCount] > 0) {  // Modified "clickCount >1" to "clickCount >0" for singleclick policy
+  int minclicknumber=[(Dock *) container clickpolicy]; 
+ 
+  if ([theEvent clickCount] > minclicknumber-1) {  
     if ([self isSpecialIcon] == NO) {
       if (launched == NO) {
         [ws launchApplication: appName];
