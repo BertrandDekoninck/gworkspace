@@ -55,19 +55,29 @@
       NSDictionary *appsdict;
       NSArray *pbTypes;
       int i;
-      id defEntry;
+      id defEntry1, defEntry2;
 
       manager = mngr;
       position = [manager dockPosition];
       
-      defEntry = [defaults objectForKey: @"dockstyle"];
+      defEntry1 = [defaults objectForKey: @"dockstyle"];
+
       style = DockStyleClassic;
-      if ([defEntry intValue] == DockStyleModern)
+      if ([defEntry1 intValue] == DockStyleModern)
 	style = DockStyleModern;
- 
-    gw = [GWorkspace gworkspace];
-    fm = [NSFileManager defaultManager];
-    ws = [NSWorkspace sharedWorkspace];
+
+     
+      defEntry2 = [defaults objectForKey: @"dockclickpolicy"];
+     
+      clickpolicy = DockClickPolicyDouble;
+      if ([defEntry2 intValue] == DockClickPolicySingle)
+	{
+	  clickpolicy = DockClickPolicySingle;
+	}
+    
+     gw = [GWorkspace gworkspace];
+     fm = [NSFileManager defaultManager];
+     ws = [NSWorkspace sharedWorkspace];
 
     icons = [NSMutableArray new];
     iconSize = MAX_ICN_SIZE;
@@ -84,8 +94,9 @@
     [self registerForDraggedTypes: pbTypes];    
 
     if (style == DockStyleModern)
-      //[self setBackColor: [[NSColor grayColor] colorWithAlphaComponent: 0.33]]; Former Dock color in the code
-      [self setBackColor: [[NSColor whiteColor] colorWithAlphaComponent: 0.1]]; // New white color. B. Dekoninck
+      {
+	[self setBackColor: [[NSColor whiteColor] colorWithAlphaComponent: 0.1]];
+      }
     else
       [self setBackColor: [NSColor grayColor]];
       
@@ -406,7 +417,7 @@
 	}
       else if (s == DockStyleModern)
 	{
-	  [self setBackColor: [[NSColor grayColor] colorWithAlphaComponent: 0.33]];
+	  [self setBackColor: [[NSColor whiteColor] colorWithAlphaComponent: 0.1]];//changed from greyColor and alpha=0.33
 	}
     }
   style = s;
@@ -415,6 +426,11 @@
 - (DockStyle)style
 {
   return style;
+}
+
+- (DockClickPolicy)clickpolicy
+{
+  return clickpolicy;
 }
 
 - (void)setBackColor:(NSColor *)color
@@ -512,6 +528,9 @@
 
   [defaults setObject: [NSNumber numberWithInt: style]
                forKey: @"dockstyle"];
+  [defaults setObject:[NSNumber numberWithInt: clickpolicy]
+	       forKey: @"dockclickpolicy"];
+
 
   for (i = 0; i < [icons count]; i++)
     {

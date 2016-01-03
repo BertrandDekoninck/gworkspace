@@ -1,13 +1,17 @@
+2016-01-03 Bertrand Dekoninck <bertrand.dekoninck@gmail.com>
+	* Dock.m
+	* Dock.h
+	* Dockicon.m
+	New defaults entry "dockclickpolicy" with value 1 or 2, to set the click policy on the dock's icons.
+
 2015-12-21 Bertrand Dekoninck <bertrand.dekoninck@gmail.com>
-	* DockIcon.m
-	Change click policy to single click on the Dock
 	* Dock.m
 	Change the color of ModernDock to whiteColor with alpha=0.1 (instead of greyColor with alpha=0.33)
 	* GWorkspace.m
 	New shortcut #D to empty the Recycler
 
 2015-12-21 Bertrand Dekoninck <bertrand.dekoninck@gmail.com>
-	* GWDesktopView.m 
+	* GWDesktopView.m
 	Change color of icons' labels to white on the desktop
 
 

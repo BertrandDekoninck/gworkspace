@@ -39,11 +39,17 @@ typedef enum DockStyle
   DockStyleModern = 1
 } DockStyle;
 
+typedef enum DockClickPolicy
+{
+  DockClickPolicySingle=1,
+  DockClickPolicyDouble=2
+} DockClickPolicy;
+
 @interface Dock : NSView 
 {
   DockPosition position;
   DockStyle style;
-
+  DockClickPolicy clickpolicy;
   NSMutableArray *icons;
   int iconSize;
 
@@ -105,6 +111,8 @@ typedef enum DockStyle
 - (DockStyle)style;
 
 - (void)setStyle:(DockStyle)s;
+
+- (DockClickPolicy)clickpolicy;
 
 - (void)setBackColor:(NSColor *)color;
 
