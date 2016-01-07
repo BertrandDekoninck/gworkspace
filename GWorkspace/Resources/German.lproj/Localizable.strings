@@ -187,16 +187,15 @@ which ends in "kann <the file> nicht umbenennen"
 "Attributes" = "Attribute";
 "Attributes Inspector" = "Attribut-Inspektor";
 "Path:" = "Pfad:";
-"Link To:" = "Link zu:";
+"Link to:" = "Verweis zu:";
 "Size:" = "Größe:";
 "Calculate" = "Berechnen";
 "Owner:" = "Besitzer:";
 "Group:" = "Gruppe:";
 "Changed" = "Geändert";
-"also apply to files inside selection" = "auch auf Dateien innerhalb der Auswahl anwenden";
 "Revert" = "Zurücksetzen";
 "OK" = "OK";
-
+"also apply to files inside selection" = "Auch in Unterordner setzen";
 
 /* ContentsPanel.m */
 
@@ -262,7 +261,7 @@ which ends in "kann <the file> nicht umbenennen"
 "Read" = "Lesen";
 "Write" = "Schreiben";
 "Execute" = "Ausführen";
-"Owner" = "Besitzer";
+"Owner_short" = "Besitzer";
 "Group" = "Gruppe";
 "Others" = "Andere";
 

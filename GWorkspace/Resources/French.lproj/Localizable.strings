@@ -44,6 +44,8 @@
 	      	"Up" = "Haut";
 		"Left" = "Gauche";
 	"Label Size" = "Taille du texte";
+        "Make thumbnail(s)" = "Make thumbnail(s)";
+        "Remove thumbnail(s)" = "Remove thumbnail(s)";
 	"Viewer" = "Visualisateur";
 		
 "Tools" = "Outils";
@@ -63,6 +65,7 @@
 		"Layers" = "Espaces de travail";
 	"Tabbed Shelf" = "Etagères";	
 		"Show Tabbed Shelf" = "Montrer les étagères";
+                "Show Tabbed Shelf" = "Masquer les étagères";
 		"Remove Current Tab" = "Supprime l'étagère";
 		"Rename Current Tab" = "Renommer l'étagère";
 		"Add Tab..." = "Ajouter une étagère...";
@@ -73,7 +76,9 @@
 		"Go backward" = "Revenir en arrière";	
 		"Go forward" = "Avancer";	
 	"Show Desktop" = "Montrer le bureau";
+        "Hide Desktop" = "Masquer le bureau";
 	"Show Recycler" = "Montrer la corbeille";
+        "Hide Recycler" = "Masquer la corbeille";
 	"Check for disks" = "Vérifier les lecteurs";
 	
 "Windows" = "Fenêtre";
@@ -173,15 +178,16 @@
 
 "Attributes" = "Attributs";
 "Attributes Inspector" = "Inspecteur d'attributs";
-"Path:" = "Nom complet :";
-"Link To:" = "Lié à :";
-"Size:" = "Taille :";
-"Owner:" = "Propriétaire :";
-"Group:" = "Groupe :";
+"Path:" = "Nom complet:";
+"Link to:" = "Lié à:";
+"Size:" = "Taille:";
+"Calculate" = "Calculer";
+"Owner:" = "Propr.:";
+"Group:" = "Groupe:";
 "Changed" = "Modifié";
 "Revert" = "Revenir";
 "OK" = "Ok";
-
+"also apply to files inside selection" = "Appliquer aux sous-dossiers";
 
 /* ContentsPanel.m */
 
@@ -200,7 +206,6 @@
 "Type" = "Type";
 "Date" = "Date";
 "Size" = "Taille";
-"Owner" = "Propriétaire";
 "Folder Inspector" = "Inspecteur de dossiers";	
 /* Ajouts 25052003 */
 "%@ available on hard disk"= "%@ disponibles sur le disque dur";
@@ -251,7 +256,7 @@
 "Read" = "Lire";
 "Write" = "Ecrire";
 "Execute" = "Executer";
-"Owner" = "Propriétaire";
+"Owner_short" = "Propr.";
 "Group" = "Groupe";
 "Other" = "Autre";
 
@@ -388,7 +393,6 @@
 "Type" = "Type";
 "Date" = "Date";
 "Size" = "Taille";
-"Owner" = "Propriétaire";
 "Set" = "Appliquer";
 "Icons Animation" = "Animation d'icônes";
 "Hidden Files" = "Fichiers cachés";

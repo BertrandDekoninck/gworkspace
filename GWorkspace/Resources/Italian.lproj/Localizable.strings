@@ -25,7 +25,10 @@
 "View" = "Vista";
 	"Browser" = "Browser";
 	"Icon" = "Icone";
-		
+                "Owner" = "Proprietario";
+        "Make thumbnail(s)" = "Crea miniature";
+        "Remove thumbnail(s)" = "Rimuovi miniature";
+ 
 "Tools" = "Strumenti";
 	"Viewer" = "Viewer";
 	"Inspectors" = "Ispettori";
@@ -35,7 +38,6 @@
 		"Tools" = "Strumenti";	
 		"Permissions" = "Permessi";	
 	"Finder" = "Finder";
-	"Processes..." = "Processi...";
 	"Fiend" = "Fiend";
 		"Show Fiend" = "Mostra il Fiend";
 		"Hide Fiend" = "Nascondi il Fiend";
@@ -43,9 +45,24 @@
 		"Remove Current Layer" = "Rimuovi il Livello corrente";
 		"Rename Current Layer" = "Rinomina il Livello corrente";
 		"Layers" = "Livelli";
-	"DeskTop Shelf" = "Scaffale Scrivania";	
-	"XTerm" = "XTerm";
-	
+	"Tabbed Shelf" = "Scaffalatura";	
+		"Show Tabbed Shelf" = "Mostra Scaffalatura";
+                "Hide Tabbed Shelf" = "Nascondi Scaffalatura";
+		"Remove Current Tab" = "Rimuovi Scaffale Corrente";
+		"Rename Current Tab" = "Rinomina Scaffale Corrente";
+		"Add Tab..." = "Aggiungi Scaffale...";
+	"Terminal" = "Terminale";
+	"Run..." = "Esegui...";
+	"History" = "Cronologia";
+		"Show History" = "Mostra Cronologia";
+		"Go backward" = "Indietro";
+		"Go forward" = "Avanti";
+        "Show Desktop" = "Mostra Scrivania";
+        "Hide Desktop" = "Nascondi Scrivania";
+	"Show Recycler" = "Mostra Cestino";
+        "Hide Recycler" = "Nascondi Cestino";
+	"Check for disks" = "Verifica dischi";
+
 "Windows" = "Finestre";
 	"Arrange in Front" = "Porta davanti";
 	"Miniaturize Window" = "Miniaturizza la Finestra";
@@ -54,8 +71,14 @@
 "Services" = "Servizi";
 
 "Hide" = "Nascondi";
+"Hide Others" = "Nascondi Altri";
+"Show All" = "Mostra Tutti";
+
+"Print..." = "Stampa...";
 
 "Quit" = "Esci";
+
+"Logout" = "Termina Sessione";
 
 /* ----------------------- File Operations strings --------------------------- *\
 
@@ -137,9 +160,10 @@
 "Attributes" = "Attributi";
 "Attributes Inspector" = "Ispettore Attributi";
 "Path:" = "Path:";
-"Link To:" = "Link a:";
+"Link to:" = "Coll. a:";
 "Size:" = "Dimensioni:";
-"Owner:" = "Proprietario:";
+"Calculate" = "Calcola";
+"Owner:" = "Propr.:";
 "Group:" = "Gruppo:";
 "Changed" = "Modificato";
 "Revert" = "Annulla";
@@ -157,13 +181,12 @@
 /* FolderViewer.m */
 
 "Sort method applies to the\ncontents of the selected folder,\nNOT to its parent folder"
-  = "L'odinamento si applica al\ncontenuto della cartella selezionata,\nNON alla directory che la contiene";
+  = "L'ordinamento si applica al\ncontenuto della cartella selezionata,\nNON alla directory che la contiene";
 "Sort by" = "Ordinamento";
 "Name" = "Nome";
 "Type" = "Tipo";
 "Date" = "Data";
 "Size" = "Dimensioni";
-"Owner" = "Propr.";
 "Folder Inspector" = "Ispettore Cartelle";	
 
 
@@ -179,11 +202,7 @@
 "App Inspector" = "Ispettore App";
 
 
-/* PermissionsPanel.m */
 
-"UNIX Permissions" = "Permissioni UNIX";
-"Access Control" = "Controllo Accesso";
-"Also apply to files inside selection" = "Applica anche ai files nella selezione";
 
 
 /* ToolsPanel.m */
@@ -196,7 +215,7 @@
 
 /* AppsView.m */
 	
-"Double-click to open selected document(s)" = "Due-click per aprire i documenti selezionati";	
+"Double-click to open selected document(s)" = "Doppio click per aprire i documenti selezionati";	
 "Default:" = "Default:";	
 "Path:" = "Path:";
 "Click 'Set Default' to set default application\nfor all documents with this extension" 
@@ -205,11 +224,11 @@
 
 /* PermsBox.m */
 
-"Permissions" = "Permissioni";
-"Read" = "Leggi";
-"Write" = "Scrivi";
-"Execute" = "Esegui";
-"Owner" = "Propr.";
+"Permissions" = "Permessi";
+"Read" = "Lettura";
+"Write" = "Scrittura";
+"Execute" = "Esec.";
+"Owner_short" = "Propr.";
 "Group" = "Gruppo";
 "Other" = "Altri";
 
@@ -312,6 +331,9 @@
 
 /* IconViewsPreferences.m */
 
+"Icons" = "Icone";
+"Thumbnails" = "Miniature";
+"use thumbnails" = "Usa miniature";
 "Title Width" = "Larg. Titolo";
 "Icon View" = "Vista per Icone";
 

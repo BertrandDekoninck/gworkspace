@@ -1,18 +1,22 @@
-2016-01-03 Bertrand Dekoninck <bertrand.dekoninck@gmail.com>
-	* Dock.m
-	* Dock.h
-	* Dockicon.m
-	New defaults entry "dockclickpolicy" with value 1 or 2, to set the click policy on the dock's icons.
+2016-01-07 Riccardo Mottola <rm@gnu.org>
 
-2015-12-21 Bertrand Dekoninck <bertrand.dekoninck@gmail.com>
-	* Dock.m
-	Change the color of ModernDock to whiteColor with alpha=0.1 (instead of greyColor with alpha=0.33)
-	* GWorkspace.m
-	New shortcut #D to empty the Recycler
+	* Inspector/Attributes.m
+	* GWorkspace/Resources/English.lproj/Localizable.strings
+	* GWorkspace/Resources/French.lproj/Localizable.strings
+	* GWorkspace/Resources/German.lproj/Localizable.string
+	Localize Owner strong to Owner_short
 
-2015-12-21 Bertrand Dekoninck <bertrand.dekoninck@gmail.com>
-	* GWDesktopView.m
-	Change color of icons' labels to white on the desktop
+2016-01-05 Riccardo Mottola <rm@gnu.org>
+
+	* GWorkspace/FileViewer/GWViewersManager.m
+	count loops to NSUInteger
+
+
+2016-01-01 Riccardo Mottola <rm@gnu.org>
+
+	* FSNode/FSNodeRep.h
+	* FSNode/FSNodeRep.m
+	Make nc ivar local instead.
 
 
 2015-12-04 Riccardo Mottola <rm@gnu.org>
