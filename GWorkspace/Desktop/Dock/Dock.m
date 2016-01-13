@@ -55,22 +55,22 @@
       NSDictionary *appsdict;
       NSArray *pbTypes;
       int i;
-      id defEntry1, defEntry2;
+      id defEntry;
 
       manager = mngr;
       position = [manager dockPosition];
       
-      defEntry1 = [defaults objectForKey: @"dockstyle"];
+      defEntry = [defaults objectForKey: @"dockstyle"];
 
       style = DockStyleClassic;
-      if ([defEntry1 intValue] == DockStyleModern)
+      if ([defEntry intValue] == DockStyleModern)
 	style = DockStyleModern;
 
      
-      defEntry2 = [defaults objectForKey: @"dockclickpolicy"];
+      defEntry = [defaults objectForKey: @"dockclickpolicy"];
      
       clickpolicy = DockClickPolicyDouble;
-      if ([defEntry2 intValue] == DockClickPolicySingle)
+      if ([defEntry intValue] == DockClickPolicySingle)
 	{
 	  clickpolicy = DockClickPolicySingle;
 	}
