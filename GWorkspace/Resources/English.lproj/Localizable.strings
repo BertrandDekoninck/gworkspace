@@ -159,7 +159,20 @@
 "Invalid char in name" = "Invalid character in name";
 
 
-/* ----------------------- Inspectors strings --------------------------- *\
+/* ----------------------------- Viewers Strings ----------------------------- *\
+
+/* GWViewer.m */
+"free" = "free";
+
+/* GWViewersManager.m */
+
+"Are you sure you want to open" = "Are you sure you want to open";
+"items?" = "items?";
+"error" = "error";
+"Can't open " = "Can't open ";
+
+
+/* ---------------------------- Inspectors strings --------------------------- *\
 
 /* InspectorsWin.m */
 
@@ -169,7 +182,7 @@
 "Access Control" = "Access Control";
 
 
-/* AttributesPanel.m */
+/* Attributes.m */
 
 "Attributes" = "Attributes";
 "Attributes Inspector" = "Attributes Inspector";
@@ -181,7 +194,6 @@
 "Group:" = "Group:";
 "Changed" = "Changed";
 "Revert" = "Revert";
-"OK" = "OK";
 "also apply to files inside selection" = "Apply to subfolders";
 
 
@@ -191,7 +203,6 @@
 "Contents Inspector" = "Contents Inspector";
 "No Contents Inspector" = "No Contents Inspector";
 "No Contents Inspector\nFor Multiple Selection" = "No Contents Inspector\nfor Multiple Selection";
-"error" = "error";
 "No Contents Inspectors found!" = "No Contents Inspectors found!";
 
 
@@ -219,14 +230,7 @@
 "App Inspector" = "App Inspector";
 
 
-/* PermissionsPanel.m */
-
-"UNIX Permissions" = "UNIX Permissions";
-"Access Control" = "Access Control";
-"Also apply to files inside selection" = "Also apply to files inside selection";
-
-
-/* ToolsPanel.m */
+/* Tools.m */
 
 "Tools" = "Tools";
 "Tools Inspector" = "Tools Inspector";
@@ -379,6 +383,7 @@
 "Background"="Background";
 "General"="General";
 
+"Color:" = "Color:";
 "center" = "Center";
 "fit" = "Fit";
 "tile" = "Tile";
@@ -387,15 +392,16 @@
 "Use image"="Use image";
 "Choose"="Choose";
 
+"Dock" = "Dock";
 "Show Dock"="Show Dock";
-"Dock position:"="Dock position:";
+"Position:"="Position:";
 
+"Style:"="Style:";
 "Left"="Left";
 "Right"="Right";
-
-"Dock style:"="Dock style:";
 
 "Classic"="Classic";
 "Modern"="Modern";
 
+"Omnipresent"="Omnipresent";
 "Autohide Tabbed Shelf"="Autohide Tabbed Shelf";
