@@ -706,12 +706,13 @@ static FSNodeRep *shared = nil;
 - (NSArray *)availableExtendedInfoNames
 {
   NSMutableArray *names = [NSMutableArray array];
-  int i;
+  NSUInteger i;
   
-  for (i = 0; i < [extInfoModules count]; i++) {
-    id module = [extInfoModules objectAtIndex: i];
-    [names addObject: NSLocalizedString([module menuName], @"")];
-  }
+  for (i = 0; i < [extInfoModules count]; i++)
+    {
+      id module = [extInfoModules objectAtIndex: i];
+      [names addObject: [module menuName]];
+    }
   
   return names;
 }
@@ -719,16 +720,18 @@ static FSNodeRep *shared = nil;
 - (NSDictionary *)extendedInfoOfType:(NSString *)type
                              forNode:(FSNode *)anode
 {
-  int i;
+  NSUInteger i;
 
-  for (i = 0; i < [extInfoModules count]; i++) {
-    id module = [extInfoModules objectAtIndex: i];
-    NSString *mname = NSLocalizedString([module menuName], @"");
-  
-    if ([mname isEqual: type]) {
-      return [module extendedInfoForNode: anode];
+  for (i = 0; i < [extInfoModules count]; i++)
+    {
+      id module = [extInfoModules objectAtIndex: i];
+      NSString *mname = [module menuName];
+      
+      if ([mname isEqual: type])
+        {
+          return [module extendedInfoForNode: anode];
+        }
     }
-  }
   
   return nil;
 }
@@ -881,21 +884,6 @@ static FSNodeRep *shared = nil;
   return reserved;
 }
 
-- (BOOL)getFileSystemInfoForPath:(NSString *)fullPath
-		                 isRemovable:(BOOL *)removableFlag
-		                  isWritable:(BOOL *)writableFlag
-		               isUnmountable:(BOOL *)unmountableFlag
-		                 description:(NSString **)description
-			                      type:(NSString **)fileSystemType
-{
-  return [self getFileSystemInfoForPath: fullPath
-		                 isRemovable: removableFlag
-		                  isWritable: writableFlag
-		               isUnmountable: unmountableFlag
-		                 description: description
-			                      type: fileSystemType
-                usingVolumesInfo: nil];
-}
 
 - (BOOL)getFileSystemInfoForPath:(NSString *)fullPath
 		                 isRemovable:(BOOL *)removableFlag
@@ -907,7 +895,7 @@ static FSNodeRep *shared = nil;
 {
   NSArray *mounted = ((info == nil) ? [self mountedVolumes] : info);
   NSArray *removables = [self removableMediaPaths];
-  int i;
+  NSUInteger i;
 
   for (i = 0; i < [mounted count]; i++) {
     NSDictionary *dict = [mounted objectAtIndex: i];
@@ -928,68 +916,6 @@ static FSNodeRep *shared = nil;
   return NO;
 }
 
-- (NSArray *)mountedLocalVolumePaths
-{
-  NSMutableArray *mpoints = [NSMutableArray array];
-  NSArray *mounted = [self mountedVolumes];
-  NSArray *reserved = [self reservedMountNames];
-  unsigned i;
-
-  NSLog(@"FSNodeRep: mountedLocalVolumePaths");
-  for (i = 0; i < [mounted count]; i++)
-    {
-      NSDictionary *dict = [mounted objectAtIndex: i];
-
-      if ([reserved containsObject: [dict objectForKey: @"name"]] == NO) {
-	[mpoints addObject: [dict objectForKey: @"dir"]];
-      }
-    }
-  
-  return mpoints;
-}
-
-- (NSArray *)mountedRemovableMedia
-{
-  NSMutableArray *mpoints = [NSMutableArray array];
-  NSArray *mounted = [self mountedVolumes];
-  NSArray *removables = [self removableMediaPaths];
-  NSArray *reserved = [self reservedMountNames];
-  NSMutableArray *names = [NSMutableArray array];  
-  unsigned i;
-
-  NSLog(@"mountedRemovableMedia");
-  for (i = 0; i < [mounted count]; i++) {
-    NSDictionary *dict = [mounted objectAtIndex: i];
-    NSString *name = [dict objectForKey: @"name"];
-    NSString *dir = [dict objectForKey: @"dir"];
-
-    if (([reserved containsObject: name] == NO) 
-                        && [removables containsObject: dir]) {
-      [mpoints addObject: dir];
-    }
-  }
-
-  for (i = 0; i < [mpoints count]; i++) {
-    BOOL removableFlag;
-    BOOL writableFlag;
-    BOOL unmountableFlag;
-    NSString *description;
-    NSString *fileSystemType;
-    NSString *name = [mpoints objectAtIndex: i];
-
-    if ([self getFileSystemInfoForPath: name
-		              isRemovable: &removableFlag
-		              isWritable: &writableFlag
-		              isUnmountable: &unmountableFlag
-		              description: &description
-		              type: &fileSystemType
-      usingVolumesInfo: mounted] && removableFlag) {
-	    [names addObject: name];
-	  }
-  }
-
-  return names;
-}
 
 - (NSArray *)mountNewRemovableMedia
 {
@@ -997,7 +923,7 @@ static FSNodeRep *shared = nil;
   NSArray *mountedMedia = [self mountedRemovableMedia]; 
   NSMutableArray *willMountMedia = [NSMutableArray array];
   NSMutableArray *newlyMountedMedia = [NSMutableArray array];
-  int i;
+  NSUInteger i;
 
   for (i = 0; i < [removables count]; i++) {
     NSString *removable = [removables objectAtIndex: i];
@@ -1031,53 +957,6 @@ static FSNodeRep *shared = nil;
   return newlyMountedMedia;
 }
 
-- (BOOL)unmountAndEjectDeviceAtPath:(NSString *)path
-{
-  unsigned int systype = [[NSProcessInfo processInfo] operatingSystem];
-  NSArray	*volumes = [self mountedLocalVolumePaths];
-
-  if ([volumes containsObject: path])
-    {
-      NSDictionary *userinfo;
-      NSTask *task;
-      
-      userinfo = [NSDictionary dictionaryWithObject: path forKey: @"NSDevicePath"];
-      
-      [[self notificationCenter] postNotificationName: NSWorkspaceWillUnmountNotification
-                                               object: self
-                                             userInfo: userinfo];
-      
-      task = [NSTask launchedTaskWithLaunchPath: @"umount"
-                                      arguments: [NSArray arrayWithObject: path]];
-      
-      if (task)
-        {
-          [task waitUntilExit];
-          if ([task terminationStatus] != 0)
-            {
-              return NO;
-            } 
-        }
-      else
-        {
-          return NO;
-        }
-      
-      [[self notificationCenter] postNotificationName: NSWorkspaceDidUnmountNotification
-                                               object: self
-                                             userInfo: userinfo];
-      
-      if (systype == NSGNULinuxOperatingSystem)
-        {
-          [NSTask launchedTaskWithLaunchPath: @"eject"
-                                   arguments: [NSArray arrayWithObject: path]];
-        }
-      
-      return YES;
-    }
-  
-  return NO;
-}
 
 @end
 

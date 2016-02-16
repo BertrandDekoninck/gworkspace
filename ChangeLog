@@ -1,3 +1,102 @@
+2016-02-15  Riccardo Mottola <rm@gnu.org>
+
+	* FSNode/FSNodeRep.h
+	* FSNode/FSNodeRep.m
+	Delete mountedRemovableMedia custom implementation.
+
+2016-02-13  Riccardo Mottola <rm@gnu.org>
+
+	* FSNode/FSNodeRep.m
+	Delete unmountAndEjectDeviceAtPath custom implementation and use AppKit's one.
+
+2016-02-12  Riccardo Mottola <rm@gnu.org>
+
+	* FSNode/FSNodeRep.h
+	* FSNode/FSNodeRep.m
+	Remove mountedLocalVolumePaths already implemented in NSWorkspace.
+
+	* GWorkspace/Dialogs/RunExternalController.h
+	* GWorkspace/Dialogs/RunExternalController.m
+	Localize panel labels and titles.
+
+	* GWorkspace/Resources/English.lproj/RunExternal.gorm
+	Make labels larger.
+
+2016-02-12  Riccardo Mottola <rm@gnu.org>
+
+	* FSNode/FSNodeRep.h
+	* FSNode/FSNodeRep.m
+	Remove getFileSystemInfoForPath of category already implemented in class.
+
+2016-02-10  Riccardo Mottola <rm@gnu.org>
+
+	* GWorkspace/Preferences/HiddenFilesPref.m
+	Localize panel title.
+
+2016-02-10  Riccardo Mottola <rm@gnu.org>
+
+	* GWorkspace/Preferences/HiddenFilesPref.m
+	Clean up types as well as certain key localizations.
+
+2016-02-02  Riccardo Mottola <rm@gnu.org>
+
+	* GWorkspace/Finder/Modules/FModuleSize/FModuleSize.m
+	Fix spelling error.
+
+2016-01-27  Riccardo Mottola <rm@gnu.org>
+
+	* GWorkspace/Resources/English.lproj/Finder.gorm
+	* Workspace/Finder/Finder.m
+	Fix "recursive" button translation.
+
+2016-01-26 Riccardo Mottola <rm@gnu.org>
+
+	* GWorkspace/Preferences/BrowserViewerPref.m
+	Fix key to match correct spelling.
+
+2016-01-20 Riccardo Mottola <rm@gnu.org>
+
+	* FSNode/FSNBrowser.m
+	* FSNode/FSNFunctions.h
+	* FSNode/FSNFunctions.m
+	* FSNode/FSNIconsView.m
+	* FSNode/FSNListView.m
+	* GWorkspace/FileViewer/GWViewerIconsPath.m
+	Group controlTextDidEndEditing in FSFunctions in utility functions and use bundle-localized strings, use these functions in all places.
+
+2016-01-18 Riccardo Mottola <rm@gnu.org>
+
+	* FSNode/FSNListView.m
+	* GWMetadata/MDKit/MDKWindow.m
+	* GWorkspace/Desktop/Dock/Dock.m
+	* GWorkspace/Finder/Finder.m
+	* GWorkspace/Finder/LiveSearch/LSFEditor.m
+	indexOfObjectIdenticalTo returns a NSUInteger
+
+2016-01-18 Riccardo Mottola <rm@gnu.org>
+
+	* FSNode/FSNBrowser.m
+	* FSNode/FSNIconsView.m
+	* FSNode/FSNListView.m
+	* FSNode/FSNode.m
+	Localizations inside the Framework
+
+2016-01-18 Riccardo Mottola <rm@gnu.org>
+
+	* GWorkspace/Desktop/GWDesktopView.m
+	Fix reading of defaults.
+
+2016-01-18 Riccardo Mottola <rm@gnu.org>
+
+	* FSNode/ExtendedInfo/Role/ExtInfoRole.m
+	* FSNode/ExtendedInfo/Role/GNUmakefile.in
+	Localizations inside the Bundle.
+
+	* FSNode/FSNListView.m
+	* FSNode/FSNodeRep.m
+	* FSNode/GNUmakefile.in
+	Localizations inside the Framework
+
 2016-01-16 Riccardo Mottola <rm@gnu.org>
 
 	* FSNode/FSNodeRep.m

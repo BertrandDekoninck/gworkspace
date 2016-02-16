@@ -1,6 +1,6 @@
 /* FSNListView.m
  *  
- * Copyright (C) 2004-2014 Free Software Foundation, Inc.
+ * Copyright (C) 2004-2016 Free Software Foundation, Inc.
  *
  * Author: Enrico Sersale <enrico@imago.ro>
  * Date: December 2004
@@ -172,28 +172,28 @@ static NSString *defaultColumns = @"{ \
 
   switch(type) {
     case FSNInfoNameType:
-      [[column headerCell] setStringValue: NSLocalizedString(@"Name", @"")];
+      [[column headerCell] setStringValue: NSLocalizedStringFromTableInBundle(@"Name", nil, [NSBundle bundleForClass:[self class]], @"")];
       break;
     case FSNInfoKindType:
-      [[column headerCell] setStringValue: NSLocalizedString(@"Type", @"")];
+      [[column headerCell] setStringValue: NSLocalizedStringFromTableInBundle(@"Type", nil, [NSBundle bundleForClass:[self class]], @"")];
       break;
     case FSNInfoDateType:
-      [[column headerCell] setStringValue: NSLocalizedString(@"Date Modified", @"")];
+      [[column headerCell] setStringValue: NSLocalizedStringFromTableInBundle(@"Date Modified", nil, [NSBundle bundleForClass:[self class]], @"")];
       break;
     case FSNInfoSizeType:
-      [[column headerCell] setStringValue: NSLocalizedString(@"Size", @"")];
+      [[column headerCell] setStringValue: NSLocalizedStringFromTableInBundle(@"Size", nil, [NSBundle bundleForClass:[self class]], @"")];
       break;
     case FSNInfoOwnerType:
-      [[column headerCell] setStringValue: NSLocalizedString(@"Owner", @"")];
+      [[column headerCell] setStringValue: NSLocalizedStringFromTableInBundle(@"Owner", nil, [NSBundle bundleForClass:[self class]], @"")];
       break;
     case FSNInfoParentType:
-      [[column headerCell] setStringValue: NSLocalizedString(@"Parent", @"")];
+      [[column headerCell] setStringValue: NSLocalizedStringFromTableInBundle(@"Parent", nil, [NSBundle bundleForClass:[self class]], @"")];
       break;
     case FSNInfoExtendedType:
-      [[column headerCell] setStringValue: NSLocalizedString(extInfoType, @"")];
+      [[column headerCell] setStringValue: extInfoType]; /* should come Localized from the ExtInfo bundle */
       break;
     default:
-      [[column headerCell] setStringValue: NSLocalizedString(@"Name", @"")];
+      [[column headerCell] setStringValue: NSLocalizedStringFromTableInBundle(@"Name", nil, [NSBundle bundleForClass:[self class]], @"")];
       break;      
   }
 
@@ -317,7 +317,7 @@ static NSString *defaultColumns = @"{ \
 
 - (void)unSelectIconsOfRepsDifferentFrom:(id)aRep
 {
-  int i;
+  NSUInteger i;
 
   for (i = 0; i < [nodeReps count]; i++) {
     FSNListViewNodeRep *rep = [nodeReps objectAtIndex: i];  
@@ -354,27 +354,29 @@ static NSString *defaultColumns = @"{ \
 
 - (NSString *)selectRepWithPrefix:(NSString *)prefix
 {
-	int i;
+  NSUInteger i;
 
-	for (i = 0; i < [nodeReps count]; i++) {
-    FSNListViewNodeRep *rep = [nodeReps objectAtIndex: i];  
-    NSString *name = [[rep node] name];
+  for (i = 0; i < [nodeReps count]; i++)
+    {
+      FSNListViewNodeRep *rep = [nodeReps objectAtIndex: i];  
+      NSString *name = [[rep node] name];
     
-		if ([name hasPrefix: prefix]) {
-      [listView deselectAll: self];
-      [self selectReps: [NSArray arrayWithObject: rep]];
-      [listView scrollRowToVisible: i];
-      
-			return name;
-		}
-	}
+      if ([name hasPrefix: prefix])
+        {
+          [listView deselectAll: self];
+          [self selectReps: [NSArray arrayWithObject: rep]];
+          [listView scrollRowToVisible: i];
+          
+          return name;
+        }
+    }
   
   return nil;
 }
 
 - (void)redisplayRep:(id)aRep
 {
-  int row = [nodeReps indexOfObjectIdenticalTo: aRep];
+  NSUInteger row = [nodeReps indexOfObjectIdenticalTo: aRep];
   NSRect rect = [listView rectOfRow: row];
   [listView setNeedsDisplayInRect: rect];
 }
@@ -736,7 +738,7 @@ static NSString *defaultColumns = @"{ \
   CREATE_AUTORELEASE_POOL (pool);
   NSMutableArray *selection = [[self selectedNodes] mutableCopy];
   NSMutableArray *opennodes = [NSMutableArray array];
-  int i, count;
+  NSUInteger i, count;
 
   for (i = 0; i < [nodeReps count]; i++) {
     FSNListViewNodeRep *rep = [nodeReps objectAtIndex: i];
@@ -795,7 +797,7 @@ static NSString *defaultColumns = @"{ \
     
   } else if ([node isSubnodeOfNode: anode]) {
     NSArray *components = [FSNode nodeComponentsFromNode: anode toNode: node];
-    int i;
+    NSUInteger i;
   
     for (i = 0; i < [components count]; i++) {
       FSNode *component = [components objectAtIndex: i];
@@ -849,7 +851,7 @@ static NSString *defaultColumns = @"{ \
   NSArray *files = [info objectForKey: @"files"];
   NSString *ndpath = [node path];
   BOOL needsreload = NO;
-  int i; 
+  NSUInteger i; 
 
   [self stopRepNameEditing];
 
@@ -932,7 +934,7 @@ static NSString *defaultColumns = @"{ \
         FSNListViewNodeRep *rep = [self repOfSubnodePath: fpath]; 
         
         if (rep) {  
-          int index = [nodeReps indexOfObjectIdenticalTo: rep];
+          NSUInteger index = [nodeReps indexOfObjectIdenticalTo: rep];
         
           [self selectReps: [NSArray arrayWithObject: rep]];
           [listView scrollRowToVisible: index];
@@ -1242,7 +1244,7 @@ static NSString *defaultColumns = @"{ \
     
   if ([selected count]) {
     id rep = [selected objectAtIndex: 0];
-    int index = [nodeReps indexOfObjectIdenticalTo: rep];
+    NSUInteger index = [nodeReps indexOfObjectIdenticalTo: rep];
     [listView scrollRowToVisible: index];
   } else if ([nodeReps count]) {
     [listView scrollRowToVisible: 0];
@@ -1443,20 +1445,18 @@ static NSString *defaultColumns = @"{ \
   return 
     
    
-    if ([ednode isParentWritable] == NO) {
-      NSRunAlertPanel(NSLocalizedString(@"Error", @""), 
-            [NSString stringWithFormat: @"%@\"%@\"!\n", 
-                NSLocalizedString(@"You do not have write permission for ", @""), 
-                    [ednode parentName]], NSLocalizedString(@"Continue", @""), nil, nil);   
-      CLEAREDITING;
-
-    } else if ([ednode isSubnodeOfPath: [desktopApp trashPath]]) {
-      NSRunAlertPanel(NSLocalizedString(@"Error", @""), 
-              NSLocalizedString(@"You can't rename an object that is in the Recycler", @""), 
-              NSLocalizedString(@"Continue", @""), nil, nil);   
-      CLEAREDITING;
-
-    } else {
+    if ([ednode isParentWritable] == NO)
+      {
+        showAlertNoPermission([FSNode class], [ednode parentName]);
+        CLEAREDITING;
+      }
+    else if ([ednode isSubnodeOfPath: [desktopApp trashPath]])
+      {
+        showAlertInRecycler([FSNode class]);
+        CLEAREDITING;
+      }
+    else
+      {
       NSString *newname = [nameEditor stringValue];
       NSString *newpath = [[ednode parentPath] stringByAppendingPathComponent: newname];
       NSString *extension = [newpath pathExtension];
@@ -1466,39 +1466,29 @@ static NSString *defaultColumns = @"{ \
       NSMutableDictionary *opinfo = [NSMutableDictionary dictionary];
 
       if (([newname length] == 0) || (range.length > 0)) {
-        NSRunAlertPanel(NSLocalizedString(@"Error", @""), 
-                  NSLocalizedString(@"Invalid name", @""), 
-                            NSLocalizedString(@"Continue", @""), nil, nil);   
+        showAlertInvalidName([FSNode class]);
         CLEAREDITING;
       }	
 
       if (([extension length] 
-              && ([ednode isDirectory] && ([ednode isPackage] == NO)))) {
-        NSString *msg = NSLocalizedString(@"Are you sure you want to add the extension ", @"");
-
-        msg = [msg stringByAppendingFormat: @"\"%@\" ", extension];
-        msg = [msg stringByAppendingString: NSLocalizedString(@"to the end of the name?", @"")];
-        msg = [msg stringByAppendingString: NSLocalizedString(@"\nif you make this change, your folder may appear as a single file.", @"")];
-
-        if (NSRunAlertPanel(@"", msg, 
-                            NSLocalizedString(@"Cancel", @""), 
-				                    NSLocalizedString(@"OK", @""), 
-                            nil) == NSAlertDefaultReturn) {
-          CLEAREDITING;
+              && ([ednode isDirectory] && ([ednode isPackage] == NO))))
+        {
+          if (showAlertExtensionChange([FSNode class], extension) == NSAlertDefaultReturn)
+            {
+              CLEAREDITING;
+            }
         }
-      }
 
       if ([dirContents containsObject: newname]) {
-        if ([newname isEqual: [ednode name]]) {
-          CLEAREDITING;
-        } else {
-          NSRunAlertPanel(NSLocalizedString(@"Error", @""), 
-            [NSString stringWithFormat: @"%@\"%@\" %@ ", 
-                NSLocalizedString(@"The name ", @""), 
-                newname, NSLocalizedString(@" is already in use!", @"")], 
-                              NSLocalizedString(@"Continue", @""), nil, nil);   
-          CLEAREDITING;
-        }
+        if ([newname isEqual: [ednode name]])
+          {
+            CLEAREDITING;
+          }
+        else
+          {
+            showAlertNameInUse([FSNode class], newname);
+            CLEAREDITING;
+          }
       }
 
       [opinfo setObject: @"GWorkspaceRenameOperation" forKey: @"operation"];	

@@ -1,4 +1,4 @@
-﻿/*GWorkspace German strings, updated by Ingolf Jandt 2006 *\
+﻿/* GWorkspace German strings, updated by Ingolf Jandt 2006 */
 
 /* ----------------------- menu strings --------------------------- *\
 /* main.m */
@@ -36,6 +36,8 @@
 	"List" = "Liste";
 	"Show" = "Zeige";
 		"Name only" = "Nur Namen";
+		"Type" = "Type";
+		"Size" = "Größe";
 		"Modification date" = "Änderungsdatum";
 		"Role" = "Funktion";
 	"Icon Size" = "Symbolgröße";
@@ -50,7 +52,6 @@
 		"Show Inspectors" = "Inspektoren anzeigen";
 		"Attributes" = "Attribute";
 		"Contents" = "Inhalt";
-		"Tools" = "Werkzeuge";	
 		"Annotations" = "Notizen";
 	"History" = "Verlauf";
 		"Show History" = "Verlauf anzeigen";
@@ -129,7 +130,6 @@
 "Move" = "Verschieben";
 "Move from: " = "Verschieben von: ";
 "\nto: " = "\nnach: ";
-"Copy" = "Kopieren";
 "Copy from: " = "Kopieren von: ";
 "Link" = "Link";
 "Link " = "Link ";
@@ -150,7 +150,6 @@
 "File Operation Completed" = "Dateioperation vollständig";
 "Backgrounder connection died!" = "Backgrounder-Verbindung gestorben!";
 "Some items have the same name;\ndo you want to sobstitute them?" = "Einige Gegenstände haben den selben Namen;\nwollen Sie diese ersetzen?";
-"Error" = "Fehler";
 "File Operation Error!" = "Fehler bei Dateioperation!";
 
 
@@ -174,17 +173,9 @@ which ends in "kann <the file> nicht umbenennen"
 
 /* ----------------------- Inspectors strings --------------------------- *\
 
-/* InspectorsWin.m */
 
-"Attributes" = "Attribute";
-"Contents" = "Inhalt";
-"Tools" = "Werkzeuge";
-"Access Control" = "Zugriffskontrolle";
+/* Attributes.m */
 
-
-/* AttributesPanel.m */
-
-"Attributes" = "Attribute";
 "Attributes Inspector" = "Attribut-Inspektor";
 "Path:" = "Pfad:";
 "Link to:" = "Verweis zu:";
@@ -195,10 +186,16 @@ which ends in "kann <the file> nicht umbenennen"
 "Changed" = "Geändert";
 "Revert" = "Zurücksetzen";
 "also apply to files inside selection" = "Auch in Unterordner setzen";
+"Permissions" = "Zugriffsrechte";
+"Read" = "Lesen";
+"Write" = "Schreiben";
+"Execute" = "Ausführen";
+"Owner_short" = "Besitzer";
+"Group" = "Gruppe";
+"Others" = "Andere";
 
 /* ContentsPanel.m */
 
-"Contents" = "Inhalt";
 "Contents Inspector" = "Inhalts-Inspektor";
 "No Contents Inspector" = "Kein Inhalts-Inspektor";
 "No Contents Inspector\nFor Multiple Selection" = "Kein Inhalts-Inspektor\nfür mehrfache Auswahl";
@@ -210,9 +207,7 @@ which ends in "kann <the file> nicht umbenennen"
   = "Sortier-Methode trifft auf die\nInhalte des ausgewählten Ordners zu,\nNICHT auf dessen übergerordneten Ordner";
 "Sort by" = "Sortieren nach:";
 "Name" = "Name";
-"Type" = "Typ";
 "Date" = "Datum";
-"Size" = "Größe";
 "Owner" = "Besitzer";
 "Folder Inspector" = "Verzeichnis-Inspektor";	
 
@@ -231,47 +226,12 @@ which ends in "kann <the file> nicht umbenennen"
 
 /* ToolsPanel.m */
 
-"Tools" = "Werkzeuge";
 "Tools Inspector" = "Werkzeug-Inspektor";
 "No Tools Inspector" = "Kein Werkzeug-Inspektor";
 "Set Default" = "Standard setzen";
 
 
-/* AppsView.m */
-	
-"Double-click to open selected document(s)" = "Doppelt klicken, um Dokument(e) zu öffnen";	
-"Default:" = "Standard:";
-"Path:" = "Pfad:";		
-"Click 'Set Default' to set default application\nfor all documents with this extension" 
-  = "Klick 'Standard setzen', um die Anwendung. \nfür alle Dokumente dieser Endung zu setzen";
 
-
-/* PermsBox.m */
-
-"Permissions" = "Zugriffsrechte";
-"Read" = "Lesen";
-"Write" = "Schreiben";
-"Execute" = "Ausführen";
-"Owner_short" = "Besitzer";
-"Group" = "Gruppe";
-"Others" = "Andere";
-
-
-/* ----------------------- Processes strings --------------------------- *\
-
-/* Processes.m */
-
-"Processes" = "Prozesse";
-"No Background Process" = "Kein Hintergrundprozess";
-"Kill" = "Beenden";
-"Path: " = "Pfad: ";
-"Status: " = "Status: ";
-
-
-/* ProcsView.m */
-
-"Applications" = "Programme";
-"Background" = "Hintergrund";
 
 
 /* ----------------------- Finder strings --------------------------- *\
@@ -279,10 +239,73 @@ which ends in "kann <the file> nicht umbenennen"
 /* Finder.m */
 
 "Finder" = "Dateisuche";
-"Find items with names that match" = "Nach passenden Namen suchen";
-"Find items with contents that match" = "Nach passenden Inhalten suchen";
 "No selection!" = "Keine Auswahl!";
 "No arguments!" = "Keine Argumente!";
+"Search in:" = "Suche in:";
+"Current selection" = "Aktuelle Auswahl";
+"Add" = "Hinzufügen ";
+"Remove" = "Entfernen";
+"Search for items whose:" = "Suche für Objekte welche:";
+"Specific places" = "Bestimmte Orte";
+"Recursive" = "Rekursiv";
+"Search" = "Suche";
+
+
+/* names */
+"contains" = "enthält";
+"is" = "ist";
+"contains not" = "enthält nicht";
+"starts with" = "beginnt mit";
+"ends with" = "endet mit";
+"name" = "Name";
+
+/* size */
+"size"="Größe";
+"greater than"="größer als";
+"less than"="kleiner als";
+
+/* annotations */
+"annotations"="Anmerkungen";
+"contains one of"="enthält eins von";
+"contains all of"="enthält alle";
+"with exactly"="mit genau";
+"without one of"="ohne eins von";
+
+/* owner */
+"owner"="Besitzer";
+
+/* date */
+"date created"="Erstellungsdatum";
+"date modified"="Änderungsdatum";
+"is today" = "it heute";
+"is within" = "ist zwischen";
+"is before" = "ist vor";
+"is after" = "ist nach";
+"is exactly" = "ist genau";
+"the last day" = "der letzte Tag";
+"the last 2 days" = "die letzten 2 Tage";
+"the last 3 days" =  "die letzten 3 Tage";
+"the last week" = "die letzte Woche";
+"the last 2 weeks" = "die letzten 2 Wochen";
+"the last 3 weeks" = "die letzten 3 Wochen";
+"the last month" = "der letzte Monat";
+"the last 2 months" = "die letzten 2 Monaten";
+"the last 3 months" = "die letzten 3 Monaten";
+"the last 6 months" = "die letzten 6 Monaten";
+
+
+/* type */
+"type"="Typ";
+"is not" = "ist nicht";
+"plain file" = "Datei";
+"folder" = "Order";
+"tool" = "Werkzeug";
+"symbolic link" = "Symb. Verweis";
+"application" = "Anwendung";
+
+/* contents */
+"contents"="Inhalt";
+"includes"="enthält";
 
 
 /* ----------------------- Fiend strings --------------------------- *\
@@ -306,20 +329,6 @@ which ends in "kann <the file> nicht umbenennen"
 "GWorkspace Preferences" = "GWorkspace Grundeinstellungen";
 
 
-/* BackWinPreferences.m */       
-
-"Desktop Shelf" = "Desktop Shelf";	
-"Desktop Color" = "Desktop-Farbe";
-"red" = "rot";
-"green" = "grün";
-"blue" = "blau";
-"Set Color" = "Farbe setzen";
-"Push the \"Set Image\" button\nto set your DeskTop image.\nThe image must have the same\nsize of your screen." = 
-  "Klicken Sie den \"Bild setzen\"-Button,\num Ihr Desktop-Bild zu setzen.\nDas Bild muss die gleiche\nGröße wie Ihr Bildschirm haben.";
-"Set Image" = "Bild setzen";
-"Unset Image" = "Bild aufheben";
-"Activate desktop" = "Desktop aktivieren";
-	
 /* DefaultXTerm.m */             
 
 "Use Terminal service" = "Terminal-Service verwenden";
@@ -328,39 +337,17 @@ which ends in "kann <the file> nicht umbenennen"
 "arguments" = "Argumente";
 
 	
-/* BrowserViewsPreferences.m */  
+/* BrowserViewerPref.m */   
 
 "Column Width" = "Spaltenbreite";
-"Use Default Settings" = "Standards benutzen";	
-"Browser" = "Browser";
-	
-	
-/* FileWatchingPreferences.m */  
-	
-"File System Watching" = "Datei-Überwachung";
-"timeout" = "Auszeit";
-"frequency" = "Frequenz";
-"Values will apply to the \nnew watchers from now, \nto the existing ones, after the first timeout" = 
-   "Werte wirken von jetzt an auf neue\n Überwachungen, auf die existier-\nenden nach der ersten Auszeit";
-	
-	
-/* ShelfPreferences.m */
-	
-"Shelf" = "Shelf";
-"Default" = "Standard";
-	
-	
+"Use Default Settings" = "Standards benutzen";
+
 /* DefaultEditor.m */            
 
+"Editor" = "Editor";
 "Default Editor" = "Standard-Editor";
 "No Default Editor" = "Kein Standard-Editor";
-"Choose..." = "Auswählen...";
 "Choose" = "Auswählen";
-
-/* IconViewsPreferences.m */
-
-"Title Width" = "Titelbreite";
-"Icon View" = "Symbolansicht";
 
 /* Sorting order */
 "Sorting Order" = "Sortierreihenfolge";
@@ -368,8 +355,46 @@ which ends in "kann <the file> nicht umbenennen"
 "The method will apply to all the folders" = "Diese Methode gilt für alle Ordner, für die";
 "that have no order specified" = "keine Reihenfolge festgelegt ist";
 
-/* File Operations*/
+/* HiddenFilesPref.m */
+"Files" = "Dateien";
+"Folders" = "Ordner";
+"Activate changes" = "Aktivieren";
+"Hidden Files" = "Versteckte Dateien";
+"Load" = "Laden";
+"Hidden files" = "Versteckte Dateien";
+"Shown files" = "Sichtbare Dateien";
+"Select and move the files to hide or to show" = "Dateien zum Zeigen/Verstecken auswählen und verschieben";
+"Hidden directories" = "Versteckte Ordner";
+
+/* IconsPrefs.m */
+"Icons" = "Symbole";
+"Thumbnails" = "Thumbnails";
+"use thumbnails" = "Thumbnails verwenden";
+"Title Width" = "Titelbreite";
+
+/* DesktopPref.m */
+"Desktop" = "Schreibtisch";
+"Background"="Hintergrund";
+"General"="Generell";
+"Color:" = "Farbe:";
+"center" = "Zentriert";
+"fit" = "Skaliert";
+"tile" = "Gekachelt";
+"Use image" = "Bild verwenden";
+"Dock" = "Dock";
+"General" = "Allgemein";
+"Show Dock" = "Dock anzeigen";
+"Position" = "Position";
+"Style:"="Stil:";
+"Left" = "Links";
+"Right" = "Rechts";
+
+"Omnipresent" = "Omnipräsent";
+"Autohide Tabbed Shelf" = "Fach selbstätig einfahren";
+
+/* OperationPrefs.m */
 "File Operations" = "Dateioperationen";
+"Operation Preferences"="Operationeinstellungen";
 "Status Window" = "Statusfenster";
 "Confirmation" = "Bestätigung";
 "Show status window" = "Statusfenster zeigen";
@@ -378,60 +403,14 @@ which ends in "kann <the file> nicht umbenennen"
 "Uncheck the buttons to allow automatic confirmation" = "Deaktivieren Sie Optionen, um automatische";
 "of file operations" = "Bestätigung von Dateioperationen zu erlauben";
 
-/* Icons */
-
-"Icons" = "Symbole";
-"Thumbnails" = "Thumbnails";
-"use thumbnails" = "Thumbnails verwenden";
-"Animate icons" = "Symbole animieren";
-"when changing a path" = "beim Pfadwechsel";
-"when opening a file" = "beim Dateiöffnen";
-"sliding back after file operation" = "Nach Dateioperation zurückrutschen";
-"Activate changes" = "Änderungen aktivieren";
-
-/* Hidden Files */
-"Files" = "Dateien";
-"Folders" = "Ordner";
-"Hidden Files" = "Versteckte Dateien";
-"Hidden files" = "Versteckte Dateien";
-"Shown files" = "Sichtbare Dateien";
-"Load" = "Laden";
-"Select and move the files to hide or to show" = "Dateien zum Zeigen oder Verstecken auswählen und verschieben";
-"Hidden directories" = "Versteckte Ordner";
-"add" = "hinzufügen";
-"remove" = "entfernen";
-
-
-/* Desktop */
-"Desktop" = "Schreibtisch";
-"Background"="Hintergrund";
-"General"="Generell";
-
-"Color:" = "Farbe:";
-"Back Image" = "Hintergrundbild";
-	"center" = "zentriert";
-	"fit" = "skaliert";
-	"tile" = "gekachelt";
-	"Use image" = "Bild verwenden";
-
-"Dock" = "Dock";
-
-"General" = "Allgemein";
-	
-	"Show Dock" = "Dock anzeigen";
-"Position" = "Position";
-"Style:"="Stil:";
-	"Left" = "Links";
-	"Right" = "Rechts";
-
-"Omnipresent" = "Omnipräsent";
-"Autohide Tabbed Shelf" = "Fach selbstätig einfahren";
-
-/* Browser */
-"Aspect" = "Aspekt";
-"Icons in Browser Cells" = "Symbole in Browserzellen zeigen";
-"Uses Shelf" = "Regal verwenden";
-"Columns Width" = "Spaltenbreite";
-
 /* History */
 "Number of saved paths" = "Anzahl der gespeicherten Pfade";
+
+
+
+
+/* -------- */
+
+/* RunExternalController.m */
+"Run" = "Ausführen";
+"Type the command to execute:"="Befehl eingeben:";
