@@ -505,25 +505,5 @@ typedef enum FSNSelectionMask {
 @end
 
 
-@interface NSWorkspace (mounting)
-
-- (NSArray *)mountedVolumes;
-
-- (NSArray *)removableMediaPaths;
-
-- (NSArray *)reservedMountNames;
-
-- (BOOL)getFileSystemInfoForPath:(NSString *)fullPath
-		                 isRemovable:(BOOL *)removableFlag
-		                  isWritable:(BOOL *)writableFlag
-		               isUnmountable:(BOOL *)unmountableFlag
-		                 description:(NSString **)description
-			                      type:(NSString **)fileSystemType
-                usingVolumesInfo:(NSArray *)info;
-
-- (NSArray *)mountNewRemovableMedia;
-
-@end
-
 #endif // FSNODE_REP_H
 
