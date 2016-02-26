@@ -1076,10 +1076,6 @@ static GWorkspace *gworkspace = nil;
   
   } else if (sel_isEqual(action, @selector(emptyRecycler:))) {
     return ([trashContents count] != 0);
-  
-  } else if (sel_isEqual(action, @selector(checkRemovableMedia:))) {  
-    return [dtopManager isActive];
-  
   } else if (sel_isEqual(action, @selector(removeTShelfTab:))
               || sel_isEqual(action, @selector(renameTShelfTab:))
                       || sel_isEqual(action, @selector(addTShelfTab:))) {
@@ -1117,7 +1113,7 @@ static GWorkspace *gworkspace = nil;
     }
   }
   
-	return YES;
+  return YES;
 }
            
 - (void)fileSystemWillChange:(NSNotification *)notif
@@ -1428,7 +1424,7 @@ static GWorkspace *gworkspace = nil;
 {
   NSString *basePath;
   NSMutableArray *files;
-  int tag;
+  NSInteger tag;
   NSUInteger i;
 
   basePath = [NSString stringWithString: [selectedPaths objectAtIndex: 0]];
@@ -1455,7 +1451,7 @@ static GWorkspace *gworkspace = nil;
 {
   NSString *basePath;
   NSMutableArray *files;
-  int tag;
+  NSInteger tag;
   NSUInteger i;
 
   basePath = [NSString stringWithString: [selectedPaths objectAtIndex: 0]];
@@ -1484,7 +1480,7 @@ static GWorkspace *gworkspace = nil;
   NSMutableArray *umountPaths = [NSMutableArray array];
   NSMutableArray *files = [NSMutableArray array];
   NSUInteger i;
-  int tag;
+  NSInteger tag;
 
   for (i = 0; i < [selectedPaths count]; i++) {
     NSString *path = [selectedPaths objectAtIndex: i];
@@ -2280,11 +2276,20 @@ static GWorkspace *gworkspace = nil;
   NSMenu *menu = [[[NSApp mainMenu] itemWithTitle: NSLocalizedString(@"Tools", @"")] submenu];
   id item;
 
-  if ([dtopManager isActive] == NO) {
-    [dtopManager activateDesktop];
-    item = [menu itemWithTitle: NSLocalizedString(@"Show Desktop", @"")];
-    [item setTitle: NSLocalizedString(@"Hide Desktop", @"")];
-  } else {
+  if ([dtopManager isActive] == NO)
+    {
+      [dtopManager activateDesktop];
+      item = [menu itemWithTitle: NSLocalizedString(@"Show Desktop", @"")];
+      [item setTitle: NSLocalizedString(@"Hide Desktop", @"")];
+      if (recyclerApp)
+	{
+	  recyclerCanQuit = YES;
+	  [recyclerApp terminateApplication];
+	  item = [menu itemWithTitle: NSLocalizedString(@"Hide Recycler", @"")];
+	  [item setTitle: NSLocalizedString(@"Show Recycler", @"")];
+	}
+    }
+  else {
     [dtopManager deactivateDesktop];
     item = [menu itemWithTitle: NSLocalizedString(@"Hide Desktop", @"")];
     [item setTitle: NSLocalizedString(@"Show Desktop", @"")];

@@ -1,3 +1,30 @@
+2016-02-26 Riccardo Mottola <rm@gnu.org>
+
+	* GWorkspace/Desktop/Dock/DockIcon.m
+	* GWorkspace/Desktop/GWDesktopManager.h
+	* GWorkspace/Desktop/GWDesktopManager.m
+	* GWorkspace/Desktop/GWDesktopView.h
+	* GWorkspace/Desktop/GWDesktopView.m
+	Implement unlock methods and use them when unmounting fails.
+
+2016-02-23  Riccardo Mottola <rm@gnu.org>
+
+	* GWorkspace/GWorkspace.m
+	Quit Recycler.app when activating desktop.
+
+2016-02-22  Riccardo Mottola <rm@gnu.org>
+
+	* GWorkspace/GWorkspace.m
+	Allow disk checking also without desktop.
+
+2016-02-22  Riccardo Mottola <rm@gnu.org>
+
+	* GWorkspace/Fiend/FiendLeaf.m
+	* GWorkspace/GWorkspace.m
+	* GWorkspace/WorkspaceApplication.m
+	* Recycler/Recycler.m
+	Update tag of performFileOperation from int to NSInteger as per current API.
+
 2016-02-17  Riccardo Mottola <rm@gnu.org>
 
 	* GWorkspace/FileViewer/GWViewersManager.m
