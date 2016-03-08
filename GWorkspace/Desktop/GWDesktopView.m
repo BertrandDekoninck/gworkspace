@@ -1040,23 +1040,20 @@ static void GWHighlightFrameRect(NSRect aRect)
     
   for (i = 0; i < [subNodes count]; i++) {
     FSNode *subnode = [subNodes objectAtIndex: i];
-      NSColor *aTextColor = [NSColor whiteColor]; // my modification of the initial code. B. Dekoninck
     GWDesktopIcon *icon = [[GWDesktopIcon alloc] initForNode: subnode
-                                          nodeInfoType: infoType
-                                          extendedType: extInfoType
-                                              iconSize: iconSize
-                                          iconPosition: iconPosition
-                                             labelFont: labelFont
-						 //textColor: textColor // former code for label color on the desktop
-						  textColor: aTextColor // my modification of the initial code  B. Dekoninck
-                                             gridIndex: -1
-                                             dndSource: YES
-                                             acceptDnd: YES
-                                             slideBack: YES];
+						nodeInfoType: infoType
+						extendedType: extInfoType
+						    iconSize: iconSize
+						iconPosition: iconPosition
+						   labelFont: labelFont
+						   textColor: [NSColor whiteColor]
+						   gridIndex: -1
+						   dndSource: YES
+						   acceptDnd: YES
+						   slideBack: YES];
                                        
     [unsorted addObject: icon];
     RELEASE (icon);
-   //RELEASE (maTextColor); // Do I need to release the color ? B. Dekoninck.
   }
   
   if (indexes) {
@@ -1331,19 +1328,17 @@ static void GWHighlightFrameRect(NSRect aRect)
 - (id)addRepForSubnode:(FSNode *)anode
 {
   CREATE_AUTORELEASE_POOL(arp);
-   NSColor *myTextColor = [NSColor whiteColor]; // my modification for label color on the desktop. B. Dekoninck
   GWDesktopIcon *icon = [[GWDesktopIcon alloc] initForNode: anode
-                                        nodeInfoType: infoType
-                                        extendedType: extInfoType
-                                            iconSize: iconSize
-                                        iconPosition: iconPosition
-                                           labelFont: labelFont
-					      // textColor: textColor// former code for label color on the desktop
-					       textColor: myTextColor // my modification for label color on the Desktop. B. Dekoninck
-                                           gridIndex: -1
-                                           dndSource: YES
-                                           acceptDnd: YES
-                                           slideBack: YES];
+					      nodeInfoType: infoType
+					      extendedType: extInfoType
+						  iconSize: iconSize
+					      iconPosition: iconPosition
+						 labelFont: labelFont 
+						 textColor: [NSColor whiteColor]
+						 gridIndex: -1
+						 dndSource: YES
+						 acceptDnd: YES
+						 slideBack: YES];
 
   [icon setGridIndex: [self firstFreeGridIndex]];
   [icons addObject: icon];
