@@ -1,4 +1,4 @@
-/***
+﻿/***
 Italian.lproj/Localizable.strings
 updated by make_strings 2016-01-22 00:30:18 +0100
 add comments above this one
@@ -131,3 +131,11 @@ add comments above this one
 /*** Strings from ../FSNIconsView.m ***/
 /* File: ../FSNIconsView.m:799 */
 "Open with" = "Apri con";
+
+"Desktop"="Scrivania";
+"Music"="Musica";
+"Images"="Immagini";
+"Documents"="Documenti";
+"Downloads"="Scaricamenti";
+"Applications"="Applicazioni";
+"Tools"="Strumenti";
