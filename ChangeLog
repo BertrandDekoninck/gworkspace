@@ -1,3 +1,13 @@
+2016-03-10 Riccardo Mottola <rm@gnu.org>
+
+	* FSNode/FSNodeRepIcons.m (iconOfSize: forNode:)
+	Traverse links to get thumbnails inside linked folders, mark direct symlinked folders and images with a link icon.
+
+2016-03-10  Wolfgang Lux  <wolfgang.lux@gmail.com>
+
+	* Inspector/aclocal.m4 (AC_CHECK_PDFKIT):
+	Fix linking argument order in configure test.
+
 2016-03-07 Riccardo Mottola <rm@gnu.org>
 
 	* FSNode/FSNode.m
