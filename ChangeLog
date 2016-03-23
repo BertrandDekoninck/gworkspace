@@ -1,3 +1,14 @@
+2016-03-23 Riccardo Mottola <rm@gnu.org>
+
+	* GWorkspace/Desktop/GWDesktopManager.m
+	Enable thumbnail generation also for the desktop
+
+2016-03-22 Riccardo Mottola <rm@gnu.org>
+
+	* GWorkspace/GWorkspace.h
+	* GWorkspace/GWorkspace.m
+	Fix NSInteger vs. int
+
 2016-03-15 Riccardo Mottola <rm@gnu.org>
 
 	* GWorkspace/Preferences/DesktopPref.m
