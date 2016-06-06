@@ -35,7 +35,7 @@
 @class NSButton;
 @class NSWorkspace;
 @class ProgressView;
-
+@class ImageResizer;
 @protocol ContentInspectorProtocol
 
 - (void)contentsReadyAt:(NSString *)path;
@@ -44,8 +44,10 @@
 
 @protocol ImageResizerProtocol
 
-- (void)readImageAtPath:(NSString *)path
+- (oneway void)readImageAtPath:(NSString *)path
                        setSize:(NSSize)imsize;
+
+- (oneway void)terminate;
 
 @end
 
@@ -67,9 +69,7 @@
   NSString *editPath;
   
   NSConnection *conn;  
-  NSConnection *resizerConn;
-  BOOL waitingResizer;
-  id resizer;
+  ImageResizer *resizer;
   
   id <ContentInspectorProtocol>inspector;
   NSFileManager *fm;
@@ -77,9 +77,9 @@
   NSWorkspace *ws;
 }
 
-- (void)setResizer:(id)anObject;
+- (void)connectionDidDie:(NSNotification *)notification;
 
-- (void)imageReady:(NSDictionary *)info;
+- (void)imageReady:(NSDictionary *)imginfo;
 
 - (void)editFile:(id)sender;
 

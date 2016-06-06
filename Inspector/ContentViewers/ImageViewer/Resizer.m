@@ -3,6 +3,7 @@
  * Copyright (C) 2005-2016 Free Software Foundation, Inc.
  *
  * Author: Enrico Sersale <enrico@imago.ro>
+ *         Riccardo Mottola <rm@gnu.org>
  * Date: January 2005
  *
  * This file is part of the GNUstep Inspector application
@@ -22,10 +23,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111 USA.
  */
 
-#include <Foundation/Foundation.h>
-#include <AppKit/AppKit.h>
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 #include <math.h>
-#include "config.h"
+
+#import "Resizer.h"
 
 #define GWDebugLog(format, args...) \
   do { if (GW_DEBUG_LOG) \
@@ -33,26 +35,44 @@
 
 @protocol ImageViewerProtocol
 
-- (void)setResizer:(id)anObject;
+- (oneway void)setResizer:(id)anObject;
 
-- (void)imageReady:(NSDictionary *)info;
+- (oneway void)imageReady:(NSDictionary *)dict;
 
 @end
 
 
-@interface Resizer : NSObject
+
+
+
+@implementation ImageResizer
+
++ (void)connectWithPorts:(NSArray *)portArray
 {
-  id viewer;
-  NSNotificationCenter *nc; 
+  NSAutoreleasePool *pool;
+  ImageResizer *serverObject;
+
+  pool = [[NSAutoreleasePool alloc] init];
+
+  serverConnection = [NSConnection connectionWithReceivePort: [portArray objectAtIndex:0]
+                                                    sendPort: [portArray objectAtIndex:1]];
+
+  serverObject = [[self alloc] init];
+  if (serverObject)
+    {
+      [(id)[serverConnection rootProxy] setServer:serverObject];
+      [serverObject release];
+      [[NSRunLoop currentRunLoop] run];
+    }
+  [pool release];
+  [NSThread exit];
 }
 
-- (void)readImageAtPath:(NSString *)path
-                setSize:(NSSize)imsize;
 
-@end
-
-
-@implementation Resizer
+- (void)dealloc
+{
+  [super dealloc];
+}
 
 
 #define MIX_LIM 16
@@ -63,7 +83,7 @@
   CREATE_AUTORELEASE_POOL(arp);
   NSMutableDictionary *info = [NSMutableDictionary dictionary];
   NSImage *srcImage = [[NSImage alloc] initWithContentsOfFile: path];
-  NSLog(@"Resizer - readImage");
+
   if (srcImage && [srcImage isValid])
     {
       NSData *srcData = [srcImage TIFFRepresentation];
@@ -160,22 +180,22 @@
       NS_ENDHANDLER
 
       if (tiffData) {
-        [info setObject: tiffData forKey: @"imgdata"];
+        [info setObject: tiffData forKey:@"imgdata"];
       } 
 
       RELEASE (dstRep);
       
     } else {
-      [info setObject: srcData forKey: @"imgdata"];
+        [info setObject: srcData forKey:@"imgdata"];
     }
     
     RELEASE (srcImage);
   }
-  
-  [viewer imageReady: info];
-  
+  [(id <ImageViewerProtocol>)[serverConnection rootProxy] imageReady: info];
   RELEASE (arp);
 }
 
 
 @end
+
+

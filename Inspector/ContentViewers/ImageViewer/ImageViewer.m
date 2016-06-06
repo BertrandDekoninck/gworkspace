@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2016 Free Software Foundation, Inc.
  *
  * Author: Enrico Sersale <enrico@imago.ro>
+ *         Riccardo Mottola <rm@gnu.org>
  * Date: January 2004
  *
  * This file is part of the GNUstep Inspector application
@@ -26,16 +27,7 @@
 #import "ImageViewer.h"
 #include <math.h>
 
-@interface Resizer : NSObject
-{
-  id viewer;
-  NSNotificationCenter *nc; 
-}
-
-- (void)readImageAtPath:(NSString *)path
-                setSize:(NSSize)imsize;
-
-@end
+#import "Resizer.h"
 
 @implementation ImageViewer
 
@@ -43,12 +35,7 @@
 {
   [nc removeObserver: self];  
 
-  if (resizerConn != nil)
-    {
-      DESTROY (resizer);    
-      DESTROY (resizerConn);
-    }
-
+  DESTROY (resizer);    
   RELEASE (imagePath);	
   RELEASE (image);	
   RELEASE (nextPath);	
@@ -149,7 +136,6 @@
     valid = YES;
     
     resizer = nil;
-    waitingResizer = NO;
     imagePath = nil;
     nextPath = nil;
     editPath = nil;
@@ -166,27 +152,46 @@
   DESTROY (editPath);
   [editButt setEnabled: NO];		
   
-  if (imagePath) {
-    ASSIGN (nextPath, path);
-    return;
-  }
+  if (imagePath)
+    {
+      ASSIGN (nextPath, path);
+      return;
+    }
   
   ASSIGN (imagePath, path);
+
+  if (conn == nil)
+    {
+      NSPort *p1;
+      NSPort *p2;  
+
+      p1 = [NSPort port];
+      p2 = [NSPort port];
+
+      conn = [[NSConnection alloc] initWithReceivePort: p1 
+                                              sendPort: p2];
+      [conn setRootObject:self];
+
+      [NSThread detachNewThreadSelector: @selector(connectWithPorts:)
+                               toTarget: [ImageResizer class]
+                             withObject: [NSArray arrayWithObjects: p2, p1, nil]];
+
+      [nc addObserver: self
+             selector: @selector(connectionDidDie:)
+                 name: NSConnectionDidDieNotification
+               object: conn];    
+    }
   
-  if ((resizer == nil) && (waitingResizer == NO)) {
+  if (!(resizer == nil))
+    {
+      NSSize imsize = [imview bounds].size;
 
-    waitingResizer = YES;
-    resizer = [[Resizer alloc] init];
-
-  } else {
-    NSSize imsize = [imview bounds].size;
-    
-    imsize.width -= 4;
-    imsize.height -= 4;
-    [self addSubview: progView]; 
-    [progView start];
-    [resizer readImageAtPath: imagePath setSize: imsize];
-  }
+      imsize.width -= 4;
+      imsize.height -= 4;
+      [self addSubview: progView]; 
+      [progView start];
+      [resizer readImageAtPath: imagePath setSize: imsize];
+    }
 }
 
 - (void)displayLastPath:(BOOL)forced
@@ -201,79 +206,109 @@
   }
 }
 
-
-- (void)setResizer:(id)anObject
+- (void)setServer:(id)anObject
 {
-  if (resizer == nil) {
     NSSize imsize = [imview bounds].size;
-    
+
     imsize.width -= 4;
     imsize.height -= 4;
-    resizer = [[Resizer alloc] init];
-    waitingResizer = NO;
+    [anObject setProtocolForProxy: @protocol(ImageResizerProtocol)];
+    resizer = (ImageResizer *)anObject;
+    RETAIN (resizer);
     [self addSubview: progView]; 
     [progView start];    
     [resizer readImageAtPath: imagePath setSize: imsize];
-  }
 }
 
 
+- (void)connectionDidDie:(NSNotification *)notification
+{
+	id diedconn = [notification object];
+
+  [nc removeObserver: self
+	              name: NSConnectionDidDieNotification 
+              object: diedconn];
+
+  if ((diedconn == conn)) {
+    DESTROY (resizer);
+    
+    if ([[self subviews] containsObject: progView]) {
+      [progView stop];
+      [progView removeFromSuperview];  
+    }
+
+    if (diedconn == conn) {
+      DESTROY (conn);
+    } 
+    
+    DESTROY (imagePath);
+
+    NSRunAlertPanel(nil, 
+                    NSLocalizedString(@"resizer connection died.", @""), 
+                    NSLocalizedString(@"Continue", @""), 
+                    nil, 
+                    nil);
+  }
+}
 
 - (void)imageReady:(NSDictionary *)imginfo
 {
-  NSData *imgdata = [imginfo objectForKey: @"imgdata"];
-  BOOL imgok = YES;
+  NSData *imgdata;
+  BOOL imgok;
   NSString *lastPath;
-  NSLog(@"ImageViewer - imageReady");
-  if ([self superview]) {      
-    [inspector contentsReadyAt: imagePath];
-  }
-        
-  if (imgdata) {
-    DESTROY (image);
-    image = [[NSImage alloc] initWithData: imgdata];
-    
-    if (image) {
-      float width = [[imginfo objectForKey: @"width"] floatValue];
-      float height = [[imginfo objectForKey: @"height"] floatValue];
-      NSString *str;
 
-      if (valid == NO) {
-        valid = YES;
-        [errLabel removeFromSuperview];
-        [self addSubview: imview]; 
-      }
+  if (imginfo == nil)
+    return;
 
-      [imview setImage: image];
-
-      str = NSLocalizedString(@"Width:", @"");
-      str = [NSString stringWithFormat: @"%@ %.0f", str, width];
-      [widthLabel setStringValue: str];
-
-      str = NSLocalizedString(@"Height:", @"");
-      str = [NSString stringWithFormat: @"%@ %.0f", str, height];
-      [heightLabel setStringValue: str];
-
-      ASSIGN (editPath, imagePath);
-      [editButt setEnabled: YES];		
-      [[self window] makeFirstResponder: editButt];
+  imgdata = [imginfo objectForKey:@"imgdata"];
+  imgok = NO;
+  if (imgdata)
+    {
+      if ([self superview])
+        [inspector contentsReadyAt: imagePath];
       
-    } else {
-      imgok = NO;
+      DESTROY (image);
+      image = [[NSImage alloc] initWithData: imgdata];
+
+      imgok = YES;
+      if (image)
+        {
+          float width = [[imginfo objectForKey: @"width"] floatValue];
+          float height = [[imginfo objectForKey: @"height"] floatValue];
+          NSString *str;
+
+          if (valid == NO)
+            {
+              valid = YES;
+              [errLabel removeFromSuperview];
+              [self addSubview: imview]; 
+            }
+
+          [imview setImage: image];
+
+          str = NSLocalizedString(@"Width:", @"");
+          str = [NSString stringWithFormat: @"%@ %.0f", str, width];
+          [widthLabel setStringValue: str];
+
+          str = NSLocalizedString(@"Height:", @"");
+          str = [NSString stringWithFormat: @"%@ %.0f", str, height];
+          [heightLabel setStringValue: str];
+
+          ASSIGN (editPath, imagePath);
+          [editButt setEnabled: YES];		
+          [[self window] makeFirstResponder: editButt];
+        }
     }
-    
-  } else {
-    imgok = NO;
-  }
+
   
   if (imgok == NO) {
     if (valid == YES) {
       valid = NO;
       [imview removeFromSuperview];
-			[self addSubview: errLabel];
+      [self addSubview: errLabel];
       [widthLabel setStringValue: @""];
       [heightLabel setStringValue: @""];
-			[editButt setEnabled: NO];		
+      [editButt setEnabled: NO];		
     }
   }
   
