@@ -1,6 +1,6 @@
 /* ImageViewer.h
  *  
- * Copyright (C) 2004-2013 Free Software Foundation, Inc.
+ * Copyright (C) 2004-2016 Free Software Foundation, Inc.
  *
  * Author: Enrico Sersale <enrico@imago.ro>
  * Date: January 2004
@@ -73,11 +73,10 @@
   
   id <ContentInspectorProtocol>inspector;
   NSFileManager *fm;
-  NSNotificationCenter *nc;
   NSWorkspace *ws;
 }
 
-- (void)connectionDidDie:(NSNotification *)notification;
+- (void)setResizer:(id)anObject;
 
 - (void)imageReady:(NSDictionary *)imginfo;
 
