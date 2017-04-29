@@ -126,8 +126,11 @@
         NSNumber *index = [indexes objectAtIndex: i];
         NSString *name = [[appsdict objectForKey: index] stringByDeletingPathExtension];
         NSString *path = [ws fullPathForApplication: name];
-        
-        if (path) {
+	
+	/*#We don't want to display AClock in the dock because 
+	  there is no use to have a static icon in the dock when the clock is displayed in another widget*/
+	
+        if (path && [name isEqual: @"AClock"] == NO) {
           DockIcon *icon = [self addIconForApplicationAtPath: path
                                                     withName: name 
                                                      atIndex: [index intValue]];
@@ -153,7 +156,6 @@
   if (wsname == nil) {
     wsname = [gw gworkspaceProcessName];
   }
-
   path = [ws fullPathForApplication: wsname];
   node = [FSNode nodeWithPath: path];
   
@@ -192,8 +194,10 @@
 {
   if ([fm fileExistsAtPath: path]) {
     FSNode *node = [FSNode nodeWithPath: path];
-    
-    if ([node isApplication]) {
+    /*#We don't want to display AClock in the dock because 
+    there is no use to have a static icon in the dock when the clock is displayed in another widget*/
+	
+    if ([node isApplication] && [name isEqual: @"AClock"] == NO) {
       int icnindex;
       DockIcon *icon = [[DockIcon alloc] initForNode: node 
                                              appName: name
