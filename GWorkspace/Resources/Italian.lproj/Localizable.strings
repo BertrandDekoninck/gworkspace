@@ -48,7 +48,8 @@
 	"Inspectors" = "Ispettori";
 		"Show Inspectors" = "Mostra gli Ispettori";
 		"Attributes" = "Attributi";
-		"Contents" = "Contenuto";	
+		"Contents" = "Contenuto";
+                "Annotations" = "Annotazioni";
 	"Finder" = "Finder";
 	"Fiend" = "Folletto";
 		"Show Fiend" = "Mostra il Folletto";
@@ -411,7 +412,5 @@
 "Empty Recycler" = "Svuotare il Cestino";
 "Empty the Recycler?" = "Svuotare il Cestino?";
 "Put Away" = "Ripristina";
-
-
 
 

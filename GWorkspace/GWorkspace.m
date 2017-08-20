@@ -323,10 +323,17 @@ static GWorkspace *gworkspace = nil;
   [mainMenu addItemWithTitle:_(@"Print...") action:@selector(print:) keyEquivalent:@"p"];
 	
   // Quit
+<<<<<<< HEAD
   [mainMenu addItemWithTitle:_(@"Quit") action:@selector(terminate:) keyEquivalent:@"q"];
 
   // Logout
   [mainMenu addItemWithTitle:_(@"Logout") action:@selector(logout:) keyEquivalent:@"Q"];
+=======
+  [mainMenu addItemWithTitle:_(@"Quit") action:@selector(terminate:) keyEquivalent:@"Q"];
+
+  // Logout
+  [mainMenu addItemWithTitle:_(@"Logout") action:@selector(logout:) keyEquivalent:@""];
+>>>>>>> upstream/master
 
   [mainMenu update];
 
