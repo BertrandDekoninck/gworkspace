@@ -74,7 +74,6 @@
       position = [manager dockPosition];
       
       defEntry = [defaults objectForKey: @"dockstyle"];
-<<<<<<< HEAD
 
       style = DockStyleClassic;
       if ([defEntry intValue] == DockStyleModern)
@@ -92,15 +91,6 @@
      gw = [GWorkspace gworkspace];
      fm = [NSFileManager defaultManager];
      ws = [NSWorkspace sharedWorkspace];
-=======
-      style = DockStyleClassic;
-      if ([defEntry intValue] == DockStyleModern)
-	style = DockStyleModern;
- 
-    gw = [GWorkspace gworkspace];
-    fm = [NSFileManager defaultManager];
-    ws = [NSWorkspace sharedWorkspace];
->>>>>>> upstream/master
 
     icons = [NSMutableArray new];
     iconSize = MAX_ICN_SIZE;
@@ -117,13 +107,9 @@
     [self registerForDraggedTypes: pbTypes];    
 
     if (style == DockStyleModern)
-<<<<<<< HEAD
       {
 	[self setBackColor: [[NSColor whiteColor] colorWithAlphaComponent: 0.1]];
       }
-=======
-      [self setBackColor: [[NSColor grayColor] colorWithAlphaComponent: 0.33]];
->>>>>>> upstream/master
     else
       [self setBackColor: [NSColor grayColor]];
       
@@ -140,16 +126,11 @@
         NSNumber *index = [indexes objectAtIndex: i];
         NSString *name = [[appsdict objectForKey: index] stringByDeletingPathExtension];
         NSString *path = [ws fullPathForApplication: name];
-<<<<<<< HEAD
-	
+
 	/*#We don't want to display AClock in the dock because 
 	  there is no use to have a static icon in the dock when the clock is displayed in another widget*/
 	
         if (path && [name isEqual: @"AClock"] == NO) {
-=======
-        
-        if (path) {
->>>>>>> upstream/master
           DockIcon *icon = [self addIconForApplicationAtPath: path
                                                     withName: name 
                                                      atIndex: [index intValue]];
@@ -175,10 +156,6 @@
   if (wsname == nil) {
     wsname = [gw gworkspaceProcessName];
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/master
   path = [ws fullPathForApplication: wsname];
   node = [FSNode nodeWithPath: path];
   
@@ -217,15 +194,10 @@
 {
   if ([fm fileExistsAtPath: path]) {
     FSNode *node = [FSNode nodeWithPath: path];
-<<<<<<< HEAD
     /*#We don't want to display AClock in the dock because 
     there is no use to have a static icon in the dock when the clock is displayed in another widget*/
 	
     if ([node isApplication] && [name isEqual: @"AClock"] == NO) {
-=======
-    
-    if ([node isApplication]) {
->>>>>>> upstream/master
       int icnindex;
       DockIcon *icon = [[DockIcon alloc] initForNode: node 
                                              appName: name
@@ -462,11 +434,7 @@
 	}
       else if (s == DockStyleModern)
 	{
-<<<<<<< HEAD
 	  [self setBackColor: [[NSColor whiteColor] colorWithAlphaComponent: 0.1]];//changed from greyColor and alpha=0.33
-=======
-	  [self setBackColor: [[NSColor grayColor] colorWithAlphaComponent: 0.33]];
->>>>>>> upstream/master
 	}
     }
   style = s;
@@ -477,14 +445,11 @@
   return style;
 }
 
-<<<<<<< HEAD
 - (DockClickPolicy)clickpolicy
 {
   return clickpolicy;
 }
 
-=======
->>>>>>> upstream/master
 - (void)setBackColor:(NSColor *)color
 {
   NSColor *hlgtcolor = [color highlightWithLevel: 0.2];
@@ -580,12 +545,8 @@
 
   [defaults setObject: [NSNumber numberWithInt: style]
                forKey: @"dockstyle"];
-<<<<<<< HEAD
   [defaults setObject:[NSNumber numberWithInt: clickpolicy]
 	       forKey: @"dockclickpolicy"];
-
-=======
->>>>>>> upstream/master
 
   for (i = 0; i < [icons count]; i++)
     {
