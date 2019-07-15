@@ -109,6 +109,8 @@ typedef enum DockClickPolicy
 
 - (void)iconMenuAction:(id)sender;
 
+- (DockPosition) position;
+
 - (void)setPosition:(DockPosition)pos;
 
 - (DockStyle)style;

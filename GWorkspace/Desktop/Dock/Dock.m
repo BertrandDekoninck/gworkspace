@@ -418,6 +418,11 @@
   }
 }
 
+- (DockPosition) position
+{
+  return position;
+}
+
 - (void)setPosition:(DockPosition)pos
 {
   position = pos;
