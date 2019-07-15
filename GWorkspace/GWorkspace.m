@@ -169,7 +169,7 @@ static GWorkspace *gworkspace = nil;
   menu = AUTORELEASE ([NSMenu new]);
   [mainMenu setSubmenu: menu forItem: menuItem];	
   [menu addItemWithTitle: _(@"Info Panel...") action:@selector(showInfo:) keyEquivalent:@""];
-  [menu addItemWithTitle: _(@"Preferences...") action:@selector(showPreferences:) keyEquivalent:@""];
+  [menu addItemWithTitle: _(@"Preferences...") action:@selector(showPreferences:) keyEquivalent:@","];
   [menu addItemWithTitle: _(@"Help...") action:@selector(showHelp:) keyEquivalent:@"?"];
   [menu addItemWithTitle: _(@"Activate context help") action:@selector(activateContextHelp:) keyEquivalent:@";"];
 	 
