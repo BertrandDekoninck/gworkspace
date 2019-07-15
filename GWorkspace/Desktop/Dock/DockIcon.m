@@ -491,7 +491,7 @@ x += 6; \
       }
       else if (launched == NO) {
         if (position == DockPositionLeft) {
-          DRAWDOTS (darkerColor, [NSColor whiteColor], NSMakePoint(iSize - 16, 2));//FIXME : need retiling if iconSize changes
+          DRAWDOTS (darkerColor, [NSColor whiteColor], NSMakePoint(iSize - 4, 2));//FIXME : need retiling if iconSize changes
         }
         else {
           DRAWDOTS (darkerColor, [NSColor whiteColor], NSMakePoint(4, 2));
