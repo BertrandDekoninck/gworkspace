@@ -451,9 +451,7 @@ NSRectFill(NSMakeRect(x + 2, y + 1, 1, 1)); \
 x += 6; \
 } \
 }
-
-  DockPosition position = [(Dock *)container position];
-  
+ 	
   if (isSelected || launching) {
     [highlightColor set];
     NSRectFill(rect);
@@ -478,24 +476,12 @@ x += 6; \
         [icon compositeToPoint: icnPoint operation: NSCompositeSourceOver];
       }
     }
-    int iSize = [self iconSize];
-    NSLog(@"largeur d'icone : %i",iSize);
+    
     if ((isWsIcon == NO) && (isTrashIcon == NO)) { 
       if (apphidden) {
-        if (position == DockPositionLeft) {
-          DRAWDOT (darkerColor, [NSColor whiteColor], NSMakePoint(iSize - 4, 2));//FIXME : need retiling if iconSize changes
-        }
-        else {
-         DRAWDOT (darkerColor, [NSColor whiteColor], NSMakePoint(4, 2));
-        }
-      }
-      else if (launched == NO) {
-        if (position == DockPositionLeft) {
-          DRAWDOTS (darkerColor, [NSColor whiteColor], NSMakePoint(iSize - 16, 2));//FIXME : need retiling if iconSize changes
-        }
-        else {
-          DRAWDOTS (darkerColor, [NSColor whiteColor], NSMakePoint(4, 2));
-        }
+        DRAWDOT (darkerColor, [NSColor whiteColor], NSMakePoint(4, 2));
+      } else if (launched == NO) {
+        DRAWDOTS (darkerColor, [NSColor whiteColor], NSMakePoint(4, 2));
       }
     }
   }
