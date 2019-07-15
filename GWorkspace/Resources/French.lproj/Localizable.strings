@@ -1,11 +1,11 @@
-﻿/* ----------------------- menu strings --------------------------- */
+/* ----------------------- menu strings --------------------------- */
 /* Traduction réalisée par Stéphane PERON <speron@telys.com> 
  * et Xavier BARRIER <xavier.barrier@proxyware.fr> 
  * Mise à jour 2016 par Riccardo Mottola et Bertrand Dekoninck
  */
 /* main.m */
 
-"Info" = "Informations";
+/*"Info" = "Informations";*/
 	"Info Panel..." = "À propos...";
 	"Preferences..." = "Préférences...";
 	"Help..." = "Aide...";

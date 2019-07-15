@@ -111,6 +111,8 @@ typedef enum DockClickPolicy
 
 - (void)setPosition:(DockPosition)pos;
 
+- (DockPosition) position;
+
 - (DockStyle)style;
 
 - (void)setStyle:(DockStyle)s;
