@@ -483,15 +483,15 @@ x += 6; \
     if ((isWsIcon == NO) && (isTrashIcon == NO)) { 
       if (apphidden) {
         if (position == DockPositionLeft) {
-          DRAWDOT (darkerColor, [NSColor whiteColor], NSMakePoint(iSize - 4, 2));//FIXME : need retiling if iconSize changes
+          DRAWDOT (darkerColor, [NSColor whiteColor], NSMakePoint(iSize/3 *4 - 7, 2));//FIXME : need retiling if iconSize changes
         }
         else {
-         DRAWDOT (darkerColor, [NSColor whiteColor], NSMakePoint(4, 2));
+          DRAWDOT (darkerColor, [NSColor whiteColor], NSMakePoint(4, 2));
         }
       }
       else if (launched == NO) {
         if (position == DockPositionLeft) {
-          DRAWDOTS (darkerColor, [NSColor whiteColor], NSMakePoint(iSize - 4, 2));//FIXME : need retiling if iconSize changes
+          DRAWDOTS (darkerColor, [NSColor whiteColor], NSMakePoint(iSize/3*4 - 19, 2));//FIXME : need retiling if iconSize changes
         }
         else {
           DRAWDOTS (darkerColor, [NSColor whiteColor], NSMakePoint(4, 2));
@@ -499,6 +499,7 @@ x += 6; \
       }
     }
   }
+  
 }
 
 - (BOOL)acceptsDraggedPaths:(NSArray *)paths
